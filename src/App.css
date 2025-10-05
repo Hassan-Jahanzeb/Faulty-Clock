@@ -29,6 +29,8 @@ h1 {
   margin-bottom: 20px;
   color: #222;
   text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #032346;
   
 }
 h2 {
