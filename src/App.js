@@ -25,16 +25,17 @@ function App() {
   }, []);
 
   const timeDiff = () => {
-  const deviceNow = new Date(`${currDeviceDate}T${currDeviceTime}`); 
-  const targetTime = new Date(`${visitDate}T${visitTime}`); 
-  const currTime = new Date(); 
+  const realNow = new Date(); 
+  const deviceNow = new Date(`${currDeviceDate}T${currDeviceTime}`);
+  const targetVisit = new Date(`${visitDate}T${visitTime}`);
 
-  const diffrence = currTime - deviceNow;
-  const deviceTargetTime = new Date(targetTime.getTime() - diffrence);
+  // offset = how much device time differs from real time
+  const offset = deviceNow.getTime() - realNow.getTime();
 
-  const readable = deviceTargetTime.toLocaleString();
+  // Apply the same error to the visit time
+  const corrected = new Date(targetVisit.getTime() - offset);
 
-  setTime(`Time ${readable}`);
+  setTime(`Time ${corrected.toLocaleString()}`);
 };
 
 
